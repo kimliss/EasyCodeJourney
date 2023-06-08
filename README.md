@@ -4,4 +4,4 @@
 
 目录
 
-- [学习编程语言的通用流程](UniversalCodingLearningPath)
+- [学习编程语言的通用流程](UniversalCodingLearningPath.md)
