@@ -609,7 +609,7 @@ dog1.bark() # 输出：Tommy is barking!
 - `__str__` 方法：当 Python 尝试将对象转换为字符串时，会调用该方法。可以用于定义对象的易读形式（通常用于调试）。
 
   示例：
-  
+
   ```python
   class Dog:
       def __init__(self, name, age):
@@ -622,6 +622,96 @@ dog1.bark() # 输出：Tommy is barking!
   dog = Dog("Tommy", 3)
   print(dog)  # 输出：Dog named Tommy, aged 3
   ```
+
+## 模块和包
+
+Python模块和包是组织和管理代码的重要方式。以下是有关Python模块和包的详细讲解。
+
+### 模块的导入和使用
+
+模块是一个包含所有定义（如函数、类、变量等）的Python文件（扩展名为.py）。在编程中，为了实现代码的重用以及提高代码的可维护性，可以将相关功能组织成模块文件。
+
+模块导入有多种方式：
+
+1. 使用import关键字：直接导入模块，使用模块中的变量、函数和类时需要使用“模块名.变量名”的形式。例如：
+
+    ```python
+    import math
+    print(math.sqrt(4))  # 输出：2.0
+    ```
+
+2. 使用from...import...语句：从指定的模块中导入某个对象或者多个对象，导入后可以直接使用这些对象，不需要再使用模块名作为前缀。例如：
+
+    ```python
+    from math import sqrt
+    print(sqrt(4))  # 输出：2.0
+    ```
+
+3. 使用from...import *语句：从指定模块导入所有变量、函数和类。这种方式不建议使用，因为可能会导致命名空间被污染。例如：
+
+    ```python
+    from math import *
+    print(sqrt(4))  # 输出：2.0
+    ```
+
+4. 使用alias：为导入的模块定义一个别名，可以简化代码的可读性。例如：
+
+    ```python
+    import math as m
+    print(m.sqrt(4))  # 输出：2.0
+    ```
+
+### 包的概念和结构
+
+包是用于组织多个模块的文件夹。一个包中通常可以包含多个模块（子模块），以及一个特殊的文件 `__init__.py`。当文件夹中包含有`__init__.py`文件时，Python就会将这个文件夹视作一个包。
+
+包的结构示例：
+
+```txt
+my_package/
+    __init__.py
+    module_a.py
+    module_b.py
+    sub_package/
+        __init__.py
+        module_c.py
+        module_d.py
+```
+
+在包中，可以通过使用点号 "`.`" 进行模块之间的引用。下面的例子展示了如何从`my_package`包中的`module_a`导入`module_b`中的一个函数：
+
+```python
+# my_package.module_a:
+# 假设在 module_b.py 中定义了一个名为 my_function 的函数
+from my_package.module_b import my_function
+```
+
+### 相关的内置库
+
+Python包含了一些内置库，这些库提供了许多有用的功能。下面给出一些常用内置库的简介：
+
+1. os - 操作系统接口：提供对操作系统功能的访问，例如文件操作、环境变量、目录结构等。
+
+    ```python
+    import os
+    print(os.getcwd())  # 获取当前工作目录
+    ```
+
+2. sys - 系统特定参数与功能：提供对解释器的访问，例如命令行参数、退出程序等。
+
+    ```python
+    import sys
+    print(sys.argv)  # 获取命令行参数列表
+    ```
+
+3. math - 数学函数：提供许多数学运算，如平方根、三角函数、对数等。
+
+    ```python
+    import math
+    print(math.sqrt(4))  # 输出：2.0
+    ```
+
+这些内置库可以直接导入使用，无需安装额外的包。你可以在Python官方文档中查找更多内置库以及他们的具体功能。
 
 ## 标准库和第三方模块
 
