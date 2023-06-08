@@ -437,6 +437,7 @@ print(numbers[1])  # 输出元组第二个元素：2
 ```
 
 ### 字典（dict）
+
 字典是一种无序的、可变的映射类型。它将键（key）映射到值（value）。字典用大括号`{}`表示，键值对之间用逗号隔开。
 
 特点：
@@ -483,6 +484,73 @@ difference = s1 - s2  # 计算差集: {1, 2}
 
 ## 标准库和第三方模块
 
+### os库
+
+os 库提供了与操作系统相关的功能，如文件和目录操作、进程管理等。以下是一些常用的 os 库函数：
+
+1. os.getcwd()：获取当前工作目录
+2. os.chdir(path)：改变当前工作目录到指定的路径
+3. os.listdir(path)：列出指定目录下的文件和子目录名
+4. os.mkdir(path)：创建新目录
+5. os.rmdir(path)：删除空目录
+6. os.remove(path)：删除一个文件
+7. os.rename(src, dst)：重命名文件或目录
+8. os.path.join(path1, path2)：将两个路径合并为一个
+9. os.path.abspath(path)：获取路径的绝对路径
+10. os.path.dirname(path)：返回路径的目录名
+11. os.path.basename(path)：返回路径的文件名
+12. os.path.split(path)：分割路径的目录和文件名
+13. os.path.exists(path)：检查指定路径是否存在
+
+### sys库
+
+sys库提供了访问与Python解释器及其环境相关的功能：
+
+1. sys.argv：获取命令行参数列表
+2. sys.version：获取Python解释器的版本信息
+3. sys.executable：获取Python解释器的可执行文件路径
+4. sys.path：获取当前Python环境的模块搜索路径列表
+5. sys.modules：获取已导入的模块信息
+6. sys.stdin：标准输入
+7. sys.stdout：标准输出
+8. sys.stderr：标准错误输出
+9. sys.exit(status)：退出Python程序，并返回状态码
+
+### datetime库
+
+datetime 库提供日期和时间处理的相关类和函数：
+
+1. datetime.date：表示日期（年、月、日），提供 today 等方法获取当前日期，支持加减时间以及日期计算。
+2. datetime.time：表示时间（时、分、秒、微秒），支持加减时间和时间计算。
+3. datetime.datetime：表示日期和时间，提供 now 等方法获取当前日期和时间，支持加减和计算。
+4. datetime.timedelta：表示时间差，支持加减时间和时间计算。
+
+### re库（正则表达式）
+
+re 库提供了对正则表达式的支持，用于实现字符串的匹配、查找、替换等操作。以下是一些常用的 re 库函数：
+
+1. re.compile(pattern)：编译正则表达式为模式对象
+2. re.search(pattern, string)：在字符串中搜索符合正则表达式的第一个匹配项
+3. re.match(pattern, string)：从字符串开始位置匹配正则表达式
+4. re.findall(pattern, string)：查找字符串中所有符合正则表达式的匹配项
+5. re.finditer(pattern, string)：生成一个迭代器，用于遍历所有符合正则表达式的匹配项
+6. re.sub(pattern, repl, string, count=0)：将字符串中符合正则表达式的子串替换为指定的内容
+7. re.split(pattern, string, maxsplit=0)：使用正则表达式分割字符串
+
+### requests库（HTTP请求）
+
+requests 库是一个第三方库，用于发送 HTTP 请求和处理 HTTP 响应。以下是一些常用的 requests 库函数：
+
+1. requests.get(url, params=None, **kwargs)：发送 GET 请求，可以指定参数params
+2. requests.post(url, data=None, json=None, **kwargs)：发送 POST 请求，可以指定数据data或JSON数据
+3. requests.put(url, data=None, **kwargs)：发送 PUT 请求，并指定数据
+4. requests.delete(url, **kwargs)：发送 DELETE 请求
+5. requests.patch(url, data=None, **kwargs)：发送 PATCH 请求，并指定数据
+6. requests.request(method, url, **kwargs)：自定义请求类型并发送请求
+7. 请求响应：返回的响应对象包含 status_code（响应状态码）、text（响应文本）、json（以JSON形式解析响应内容）、headers（响应头信息）等属性和方法。
+
+通过使用这些标准库和第三方库，可以实现许多功能，如文件操作、时间处理、正则匹配、网络请求等。在编程过程中，不断学习和积累这些常用库的使用经验，有助于提高编程效率。
+
 ## 文件和 I/O 操作
 
 ## 网络编程
@@ -491,12 +559,155 @@ difference = s1 - s2  # 计算差集: {1, 2}
 
 ## 多线程和并发
 
+### 线程和进程概念
+
+进程（process）:
+进程是操作系统分配资源（如CPU时间、内存空间等）的基本单位，是能够独立运行的程序片段。每个进程具有自己独立的内存空间和系统资源，进程间的通信（IPC）需要通过特定的技术（如管道、信号、套接字等）实现。
+
+线程（thread）:
+线程是进程的一个执行单元，一个进程可以拥有多个线程。线程共享所属进程的内存空间和资源，这使得线程之间的通信更加容易。然而，这也意味着线程之间需要协同工作以避免资源争抢（如通过锁机制）。
+
+并发（concurrency）:
+并发是指多个任务（进程或线程）在同一时刻被调度和管理，但不一定是同一时刻执行。在单核CPU上，多个任务实际上是通过任务切换在执行。在多核CPU上，多个任务确实可以同一时刻执行，这就是并行。
+
+### 使用threading模块创建并管理线程
+
+Python中，可以使用内置的`threading`模块来实现多线程。
+
+创建线程的方法：
+
+1. 使用`Thread`类的子类
+2. 传递函数给`Thread`类的实例
+
+例子：
+
+1. 使用Thread类的子类：
+
+    ```python
+    import threading
+    import time
+
+    class MyThread(threading.Thread):
+        def __init__(self, thread_id, thread_name):
+            super().__init__()
+            self.thread_id = thread_id
+            self.thread_name = thread_name
+
+        def run(self):
+            print(f"Starting {self.thread_name}")
+            time.sleep(1)
+            print(f"Finishing {self.thread_name}")
+
+    thread1 = MyThread(1, "Thread-1")
+    thread2 = MyThread(2, "Thread-2")
+
+    thread1.start()
+    thread2.start()
+
+    thread1.join()
+    thread2.join()
+    print("All threads finished.")
+    ```
+
+2. 传递函数给Thread类的实例：
+
+    ```python
+    import threading
+    import time
+
+    def print_time(thread_name):
+        print(f"Starting {thread_name}")
+        time.sleep(1)
+        print(f"Finishing {thread_name}")
+
+    thread1 = threading.Thread(target=print_time, args=("Thread-1",))
+    thread2 = threading.Thread(target=print_time, args=("Thread-2",))
+
+    thread1.start()
+    thread2.start()
+
+    thread1.join()
+    thread2.join()
+    print("All threads finished.")
+    ```
+
+### 使用multiprocessing模块管理进程
+
+Python中，可以使用内置的`multiprocessing`模块来实现多进程。
+
+创建进程的方法与创建线程类似：
+
+1. 使用`Process`类的子类
+2. 传递函数给`Process`类的实例
+
+例子：
+
+1. 使用Process类的子类：
+
+    ```python
+    import multiprocessing
+    import time
+
+    class MyProcess(multiprocessing.Process):
+        def __init__(self, process_id, process_name):
+            super().__init__()
+            self.process_id = process_id
+            self.process_name = process_name
+
+        def run(self):
+            print(f"Starting {self.process_name}")
+            time.sleep(1)
+            print(f"Finishing {self.process_name}")
+
+    process1 = MyProcess(1, "Process-1")
+    process2 = MyProcess(2, "Process-2")
+
+    process1.start()
+    process2.start()
+
+    process1.join()
+    process2.join()
+    print("All processes finished.")
+    ```
+
+2. 传递函数给Process类的实例：
+
+    ```python
+    import multiprocessing
+    import time
+
+    def print_time(process_name):
+        print(f"Starting {process_name}")
+        time.sleep(1)
+        print(f"Finishing {process_name}")
+
+    process1 = multiprocessing.Process(target=print_time, args=("Process-1",))
+    process2 = multiprocessing.Process(target=print_time, args=("Process-2",))
+
+    process1.start()
+    process2.start()
+
+    process1.join()
+    process2.join()
+    print("All processes finished.")
+    ```
+
+注意：multiprocessing模块在Jupyter Notebook中可能表现异常，请使用Python脚本运行这些示例。
+
 ## Web 开发和框架
 
 ## 测试和调试
+
+1. 使用unittest编写测试用例
+1. 使用pytest等测试框架进行测试
 
 ## 代码风格和规范
 
 ## 实现项目
 
 ## 持续学习和进阶
+
+- 学习Python Web框架（如Flask或Django）进行web开发
+- 数据分析和可视化：学习NumPy、Pandas、Matplotlib等库
+- 机器学习：学习使用Sciikit-learn、TensorFlow等框架
+- 爬虫开发：学习使用BeautifulSoup、Scrapy等库进行数据抓取与分析
