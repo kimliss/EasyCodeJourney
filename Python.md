@@ -482,6 +482,147 @@ difference = s1 - s2  # 计算差集: {1, 2}
 
 ## 面向对象编程(OOP)
 
+面向对象编程（Object-Oriented Programming, OOP）是一种编程范式，旨在基于对象（实体及其属性和行为）的概念来编写程序。下面详细讲解 Python 的面向对象编程。
+
+### 类和对象的概念
+
+- 类（Class）：类是抽象的蓝图，用于描述一组具有相同属性和方法的对象。类定义了对象的结构和行为。
+- 对象（Object）：对象是类的实例，也称为实例化。对象是具体存在的，代表一个特定的实例，它包含一组属性（状态）和方法（行为）。
+
+创建类和对象的例子：
+
+```python
+class Dog:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def bark(self):
+        print(f"{self.name} is barking!")
+
+# 创建一个 Dog 对象
+dog1 = Dog("Tommy", 3)
+dog1.bark() # 输出：Tommy is barking!
+```
+
+### 封装、继承和多态
+
+- 封装（Encapsulation）：封装是将对象的属性（数据）和方法（行为）放在类中，隐藏实现细节。封装可以增强数据的安全性，使代码更易于维护。
+
+  示例：
+
+  ```python
+  class Person:
+      def __init__(self, name, age):
+          self.__name = name
+          self.__age = age
+
+      def get_name(self):
+          return self.__name
+
+      def set_name(self, name):
+          self.__name = name
+  ```
+
+- 继承（Inheritance）：继承允许子类从父类（基类）继承属性和方法，从而实现代码的重用。子类可以覆盖或扩展父类的方法。
+
+  示例：
+
+  ```python
+  class Animal:
+      def speak(self):
+          pass
+
+  class Dog(Animal):
+      def speak(self):
+          print("Dog barks.")
+
+  class Cat(Animal):
+      def speak(self):
+          print("Cat meows.")
+  ```
+
+- 多态（Polymorphism）：多态是指不同类对象可以具有相同的方法名（但行为可能不同），在运行时可以根据对象类型来决定调用哪个方法。
+
+  示例：
+  
+  ```python
+  def animal_speak(animal):
+      animal.speak()
+
+  dog = Dog()
+  cat = Cat()
+
+  animal_speak(dog)  # 输出：Dog barks.
+  animal_speak(cat)  # 输出：Cat meows.
+  ```
+
+### 类方法、静态方法和实例方法
+
+- 实例方法：实例方法是针对对象进行操作的方法，它需要以 self 作为第一个参数。只能由对象调用。
+
+  示例：
+
+  ```python
+  class Dog:
+      def bark(self):
+          print("Barking!")
+  ```
+
+- 类方法：使用 `@classmethod` 装饰器将方法定义为类方法。类方法的第一个参数为类本身（通常命名为 cls），可以被类或对象调用。
+
+  示例：
+
+  ```python
+  class Dog:
+      count = 0
+
+      @classmethod
+      def increment(cls):
+          cls.count += 1
+  ```
+
+- 静态方法：使用 `@staticmethod` 装饰器将方法定义为静态方法。静态方法没有特定的参数，不依赖于类和对象，只需要处理提供的参数。
+
+  示例：
+
+  ```python
+  class Dog:
+      @staticmethod
+      def is_animal(name):
+          return name in ['Dog', 'Cat', 'Elephant']
+  ```
+
+### 特殊方法
+
+- `__init__` 方法：当创建类的对象时，该方法被自动调用，通常用于初始化对象的属性。
+
+  示例：
+
+  ```python
+  class Dog:
+      def __init__(self, name, age):
+          self.name = name
+          self.age = age
+  ```
+
+- `__str__` 方法：当 Python 尝试将对象转换为字符串时，会调用该方法。可以用于定义对象的易读形式（通常用于调试）。
+
+  示例：
+  
+  ```python
+  class Dog:
+      def __init__(self, name, age):
+          self.name = name
+          self.age = age
+
+      def __str__(self):
+          return f"Dog named {self.name}, aged {self.age}"
+
+  dog = Dog("Tommy", 3)
+  print(dog)  # 输出：Dog named Tommy, aged 3
+  ```
+
 ## 标准库和第三方模块
 
 ### os库
