@@ -42,7 +42,7 @@
 
 一个是安装Python解释器，另一个是安装一个集成开发环境（IDE
 
-#### 学会使用 pip 安装、更新、卸载第三方库
+#### Pip 安装、更新、卸载第三方库
 
 pip 是 Python 的官方包管理工具，用于安装和管理Python第三方库。通常在安装Python解释器时，它会自动安装。
 
@@ -140,73 +140,73 @@ Python中主要的数据类型有以下几类：
 
 ### 流程控制语句
 
-1. 条件语句
+#### 条件语句
 
-    Python中的条件语句主要有 if 语句、if-else 语句和 if-elif-else 语句。
+Python中的条件语句主要有 if 语句、if-else 语句和 if-elif-else 语句。
 
-    if 语句：
+if 语句：
 
-    ```python
-    if 条件表达式:
-        代码块
-    ```
+```python
+if 条件表达式:
+    代码块
+```
 
-    if-else 语句：
+if-else 语句：
 
-    ```python
-    if 条件表达式:
-        代码块（满足条件时执行）
-    else:
-        代码块（不满足条件时执行）
-    ```
+```python
+if 条件表达式:
+    代码块（满足条件时执行）
+else:
+    代码块（不满足条件时执行）
+```
 
-    if-elif-else 语句：
+if-elif-else 语句：
 
-    ```python
-    if 条件表达式1:
-        代码块1
-    elif 条件表达式2:
-        代码块2
-    ...
-    else:
-        代码块n
-    ```
+```python
+if 条件表达式1:
+    代码块1
+elif 条件表达式2:
+    代码块2
+...
+else:
+    代码块n
+```
 
-2. 循环语句
+#### 循环语句
 
-    Python中的循环语句有两种：for 循环和 while 循环。
+Python中的循环语句有两种：for 循环和 while 循环。
 
-    for 循环:
+for 循环:
 
-    ```python
-    for 变量 in 序列:
-        代码块
-    ```
+```python
+for 变量 in 序列:
+    代码块
+```
 
-    while 循环:
+while 循环:
 
-    ```python
-    while 条件表达式:
-        代码块
-    ```
+```python
+while 条件表达式:
+    代码块
+```
 
-3. 跳转语句
+#### 跳转语句
 
-    跳转语句有三种：break（用于跳出当前循环）、continue（用于跳过本次循环的剩余语句，进入下一轮循环），以及pass（空语句，不做任何操作，主要为了保持程序结构的完整性），但pass不算跳转语句。
+跳转语句有三种：break（用于跳出当前循环）、continue（用于跳过本次循环的剩余语句，进入下一轮循环），以及pass（空语句，不做任何操作，主要为了保持程序结构的完整性），但pass不算跳转语句。
 
-    ```python
-    for i in range(10):
-        if i == 5:
-            break
-        print(i)
-    ```
+```python
+for i in range(10):
+    if i == 5:
+        break
+    print(i)
+```
 
-    ```python
-    for i in range(10):
-        if i == 5:
-            continue
-        print(i)
-    ```
+```python
+for i in range(10):
+    if i == 5:
+        continue
+    print(i)
+```
 
 ### 函数和方法
 
