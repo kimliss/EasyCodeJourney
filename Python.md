@@ -210,7 +210,189 @@ for i in range(10):
 
 ### 函数和方法
 
+#### 函数定义和使用
+
+在Python中，函数是一个可重复使用的代码块，使用`def`关键字定义。函数可以接收参数并返回结果。定义一个函数需要注意以下几点：
+
+- 使用`def`关键字开始。
+- 函数名后面紧跟一对圆括号，其中可以包含参数。函数名应该有意义，遵循标识符命名规则。
+- 冒号（:）表示函数体的开始。
+- 函数体需要使用相同缩进。
+- 函数可以使用`return`关键字返回结果。
+
+示例：
+
+```python
+def greet(name):
+    return f"Hello, {name}!"
+
+print(greet("John"))  # 输出：Hello, John!
+```
+
+#### 参数传递
+
+Python函数参数有以下几种类型：
+
+1. 必需参数：必须按照正确的顺序传递给函数。
+2. 关键字参数：在函数调用时，通过在参数名和值之间使用等号（=）指定参数名和值。这使得参数的顺序不重要。
+3. 默认参数：在定义函数时，可以为参数指定默认值。如果函数调用时没有提供该参数的值，将使用默认值。
+4. 可变参数：可以接收0个或多个任意数量的参数。在参数名前加`*`表示参数为元组，前加`**`表示参数为字典。
+
+示例：
+
+```python
+# 必需参数示例
+def add(x, y):
+    return x + y
+
+result = add(3, 4)
+print(result)  # 输出：7
+
+# 关键字参数示例
+def display_info(name, age):
+    print(f"Name: {name}, Age: {age}")
+
+display_info(age=25, name="Alice")  # 输出：Name: Alice, Age: 25
+
+# 默认参数示例
+def greet(name, greeting="Hello"):
+    return f"{greeting}, {name}!"
+
+print(greet("John"))  # 输出：Hello, John!
+print(greet("John", "Hi"))  # 输出：Hi, John!
+
+# 可变参数示例
+def sum_numbers(*args):
+    return sum(args)
+
+result = sum_numbers(1, 2, 3, 4, 5)
+print(result)  # 输出：15
+```
+
+#### 返回值
+
+函数可以使用`return`关键字返回运算结果，这样的结果可以被赋值给一个变量或直接在其他函数调用中使用。如果函数没有`return`语句，它会隐式返回`None`。
+
+示例：
+
+```python
+def square(x):
+    return x ** 2
+
+result = square(5)
+print(result)  # 输出：25
+```
+
+#### 匿名函数（lambda）
+
+匿名函数（又称lambda函数）是一个没有名字的简单函数，主要是用于编写简洁的需要短暂执行的代码段。lambda函数只能有一个表达式，不能包含复杂的逻辑。lambda函数使用`lambda`关键字定义。
+
+示例：
+
+```python
+square = lambda x: x ** 2
+result = square(5)
+print(result)  # 输出：25
+
+add = lambda x, y: x + y
+result = add(3, 4)
+print(result)  # 输出：7
+```
+
+lambda函数通常在参数传递或返回简单函数的场景中使用，例如使用`filter()`、`map()`或`sorted()`等内置函数。
+
 ### 错误和异常处理
+
+在编程过程中，错误和异常是不可避免的。学会正确处理错误和异常对于提高代码的稳定性和可靠性至关重要。以下是Python中错误与异常处理的详细内容：
+
+#### 常见错误类型
+
+Python中有许多内置的异常类，用于处理不同类型的错误。以下是一些常见的错误类型：
+
+- SyntaxError：语法错误，例如括号没有闭合或者缩进不正确。
+- NameError：尝试访问一个未定义的变量。
+- TypeError：传递给函数的参数类型不正确或者在不同类型的数据上执行不适用的操作。
+- IndexError：访问超出序列范围的元素。
+- KeyError：尝试访问字典中不存在的键。
+- ValueError：函数传递的参数值不合适，例如元素不存在的下标。
+- IOError：输入/输出错误，通常与对文件的操作相关。
+- ZeroDivisionError：尝试将数字除以零。
+- ImportError：无法导入指定的模块。
+
+#### try-except结构
+
+在可能引发异常的代码段中，可以使用try-except块捕获并处理异常。如果 try 块中的代码抛出了异常，程序将执行 except 块中的代码。 
+
+语法示例：
+
+```python
+try:
+    # 可能引发异常的代码
+except ExceptionType as e:
+    # 处理异常的代码
+```
+
+多个异常可以一起捕获处理，如果不确定异常的类型，可以捕获通用的`Exception`类。
+
+例如：
+
+```python
+try:
+    result = 1 / 0
+except ZeroDivisionError as e:
+    print("除数不能为零。", e)
+except Exception as e:
+    print("发生未知错误。", e)
+```
+
+#### try-except-else结构
+
+可以在try-except块后添加一个else子句。如果 try 块中的代码成功执行，没有引发异常，程序将执行 else 块中的代码。
+
+语法示例：
+
+```python
+try:
+    # 可能引发异常的代码
+except ExceptionType as e:
+    # 处理异常的代码
+else:
+    # 当try块没有引发异常时执行的代码
+```
+
+#### try-except-finally结构
+
+可以在try-except块后添加一个finally子句。无论 try 块中的代码是否引发异常，finally 块中的代码都会被执行。
+
+语法示例：
+
+```python
+try:
+    # 可能引发异常的代码
+except ExceptionType as e:
+    # 处理异常的代码
+finally:
+    # 无论是否发生异常都会执行的代码
+```
+
+#### raise语句
+
+如果需要在代码中主动引发异常，可以使用 raise 语句。通常可以在 except 块中使用 raise 语句重新抛出捕获的异常，或在其他地方主动引发异常。
+
+语法示例：
+
+```python
+raise ExceptionType("自定义的异常信息")
+```
+
+例如：
+
+```python
+def divide(a, b):
+    if b == 0:
+        raise ValueError("除数不能为零。")
+    return a / b
+```
 
 ## 数据结构
 
